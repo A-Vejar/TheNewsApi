@@ -4,6 +4,10 @@ android {
 
     // SDK used to build the app
     compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    // NDK Version to use
+    ndkVersion "21.0.6011959-rc2"
 
     defaultConfig {
 
@@ -163,4 +167,9 @@ dependencies {
 
     // https://github.com/GrenderG/Toasty
     implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    // Fresco (Images):
+    def fresco_version = "2.1.0"
+    implementation "com.facebook.fresco:fresco:$fresco_version"
+    implementation "com.facebook.fresco:imagepipeline-okhttp:$fresco_version"
 }

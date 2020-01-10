@@ -18,6 +18,7 @@ package cl.ucn.disc.dsm.thenewsapi;
 
 import android.app.Application;
 import androidx.appcompat.app.AppCompatDelegate;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,8 +37,20 @@ public class MainApplication extends Application {
   public void onCreate() {
     super.onCreate();
 
-    // Day and Night support
+    log.debug("Initializing ..");
+
+    /**
+     * Day and Night support
+     *
+     * MODE_NIGHT_NO - Day mode
+     * MODE_NIGHT_YES - Night mode
+     * MODE_NIGHT_AUTO_BATTERY - Night mode if the save battery is activate
+     * MODE_NIGHT_FOLLOW_SYSTEM - Default mode by the device
+     */
     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+
+    // Facebook fresco
+    Fresco.initialize(this);
 
     log.debug("Initializing: Done.");
   }
