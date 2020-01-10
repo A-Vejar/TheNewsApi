@@ -31,5 +31,4 @@ public interface NewsService {
    * @return the {@link List} of {@link News}.
    */
   List<News> getNews(final int pageSize);
-
 }
