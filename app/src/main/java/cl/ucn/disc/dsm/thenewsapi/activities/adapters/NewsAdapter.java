@@ -66,7 +66,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
 
     final LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
     return new NewsViewHolder(RowNewsBinding.inflate(layoutInflater, parent, false));
-
   }
 
   /**

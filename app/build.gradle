@@ -25,7 +25,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     // 2 versions: the debug and release.
@@ -172,4 +171,12 @@ dependencies {
     def fresco_version = "2.1.0"
     implementation "com.facebook.fresco:fresco:$fresco_version"
     implementation "com.facebook.fresco:imagepipeline-okhttp:$fresco_version"
+
+    // Prettytime
+    implementation "org.ocpsoft.prettytime:prettytime:4.0.2.Final"
+
+    // Okhttp: https://square.github.io/okhttp/
+    def okhttp_version = "4.3.0"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 }

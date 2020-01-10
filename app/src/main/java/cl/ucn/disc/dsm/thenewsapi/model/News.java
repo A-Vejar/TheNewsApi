@@ -112,7 +112,7 @@ public final class News {
   /**
    * @return The title
    */
-  public String getTitulo() {
+  public String getTitle() {
     return this.title;
   }
 

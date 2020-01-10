@@ -20,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import cl.ucn.disc.dsm.thenewsapi.R;
 import cl.ucn.disc.dsm.thenewsapi.databinding.RowNewsBinding;
 import cl.ucn.disc.dsm.thenewsapi.model.News;
+import java.util.Date;
+import org.ocpsoft.prettytime.PrettyTime;
+import org.threeten.bp.DateTimeUtils;
 
 /**
  * ViewHolder Pattern
@@ -27,6 +30,11 @@ import cl.ucn.disc.dsm.thenewsapi.model.News;
  * @author Ariel-Vejar
  */
 public final class NewsViewHolder extends RecyclerView.ViewHolder {
+
+  /**
+   * The Date formatter
+   */
+  private static final PrettyTime PRETTY_TIME = new PrettyTime();
 
   /**
    * Bindings
@@ -50,14 +58,6 @@ public final class NewsViewHolder extends RecyclerView.ViewHolder {
    */
   public void bind(final News news) {
 
-    this.binding.tvTitle.setText(news.getTitulo());
-    this.binding.tvDescription.setText(news.getDescription());
-    this.binding.tvAuthor.setText(news.getAuthor());
-    this.binding.tvSource.setText(news.getSource());
-
-    // FIXME: The format of the date.
-    this.binding.tvDate.setText(news.getDate().toString());
-
     // If exist the url ...
     if(news.getUrlPic() != null) {
       // ... Set the uri
@@ -67,5 +67,14 @@ public final class NewsViewHolder extends RecyclerView.ViewHolder {
       // .. set a default image
       this.binding.sdvPicture.setImageResource(R.drawable.ic_launcher_background);
     }
+
+    this.binding.tvTitle.setText(news.getTitle());
+    this.binding.tvDescription.setText(news.getDescription());
+    this.binding.tvAuthor.setText(news.getAuthor());
+    this.binding.tvSource.setText(news.getSource());
+
+    // ZonedDateTime to Date
+    final Date date = DateTimeUtils.toDate(news.getDate().toInstant());
+    this.binding.tvDate.setText(PRETTY_TIME.format(date));
   }
 }

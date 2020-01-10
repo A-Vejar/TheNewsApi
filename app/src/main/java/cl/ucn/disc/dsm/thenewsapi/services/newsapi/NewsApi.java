@@ -40,7 +40,8 @@ public interface NewsApi {
    * @param pageSize - Number of result to get
    * @return - The call of {@link NewsApiResult}
    */
-  @Headers({"X-Api-key: " + API_KEY})
+  // TODO: Add news by different countries - Inner interface ??
+  @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("top-headlines")
   Call<NewsApiResult> getTopHeadLines(@Query("category") final String category, @Query("pageSize") final int pageSize);
 
@@ -50,7 +51,7 @@ public interface NewsApi {
    * @param pageSize - Number of result to get
    * @return - The call of {@link NewsApiResult}
    */
-  @Headers({"X-Api-key: " + API_KEY})
+  @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("everything?sources=ars-technica,wired,hacker-news,recode")
   Call<NewsApiResult> getEverything(@Query("pageSize") final int pageSize);
 }

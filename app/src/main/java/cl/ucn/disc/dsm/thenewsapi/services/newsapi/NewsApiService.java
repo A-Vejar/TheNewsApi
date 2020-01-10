@@ -16,12 +16,19 @@
 
 package cl.ucn.disc.dsm.thenewsapi.services.newsapi;
 
-import cl.ucn.disc.dsm.thenewsapi.Transform;
+import cl.ucn.disc.dsm.thenewsapi.services.Transform;
 import cl.ucn.disc.dsm.thenewsapi.model.News;
 import cl.ucn.disc.dsm.thenewsapi.services.NewsService;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import okhttp3.OkHttpClient;
+import okhttp3.OkHttpClient.Builder;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.HttpException;
 import retrofit2.Response;
@@ -29,6 +36,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsApiService implements NewsService {
+
+  /**
+   * The Logger
+   */
+  private static final Logger log = LoggerFactory.getLogger(NewsApiService.class);
 
   /**
    * NewsAPI
@@ -39,6 +51,19 @@ public class NewsApiService implements NewsService {
    * The Constructor.
    */
   public NewsApiService() {
+
+    // Logging with slf4j
+    final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(log::debug)
+        .setLevel(Level.BODY);
+
+    // Web Client
+    final OkHttpClient httpClient = new Builder()
+        .connectTimeout(5, TimeUnit.SECONDS)
+        .writeTimeout(5, TimeUnit.SECONDS)
+        .readTimeout(5, TimeUnit.SECONDS)
+        .callTimeout(10, TimeUnit.SECONDS)
+        .addNetworkInterceptor(loggingInterceptor)
+        .build();
 
     // https://futurestud.io/tutorials/retrofit-getting-started-and-android-client
     this.newsApi = new Retrofit.Builder()

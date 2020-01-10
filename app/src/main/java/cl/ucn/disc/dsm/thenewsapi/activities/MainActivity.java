@@ -16,18 +16,39 @@
 
 package cl.ucn.disc.dsm.thenewsapi.activities;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cl.ucn.disc.dsm.thenewsapi.activities.adapters.NewsAdapter;
 import cl.ucn.disc.dsm.thenewsapi.databinding.ActivityMainBinding;
+import cl.ucn.disc.dsm.thenewsapi.model.News;
+import cl.ucn.disc.dsm.thenewsapi.services.NewsService;
+import cl.ucn.disc.dsm.thenewsapi.services.newsapi.NewsApiService;
+import es.dmoral.toasty.Toasty;
+import java.util.List;
+import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MainActivity extends AppCompatActivity {
 
   /**
-   * The Logger
+   * Logger
    */
   private static final Logger log = LoggerFactory.getLogger(MainActivity.class);
+
+  /**
+   * NewsAdapter
+   */
+  private NewsAdapter adapter;
+
+  /**
+   * NewsService
+   */
+  private NewsService service;
 
   /**
    * @param savedInstanceState to use.
@@ -47,13 +68,73 @@ public class MainActivity extends AppCompatActivity {
       this.setSupportActionBar(binding.toolbar);
     }
 
+    // Adapter + RecyclerView
+    {
+      // Adapter
+      this.adapter = new NewsAdapter();
+      binding.rvNews.setAdapter(this.adapter);
+
+      // Layout (ListView)
+      binding.rvNews.setLayoutManager(new LinearLayoutManager(this));
+
+      // Separator (line)
+      binding.rvNews.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+    }
+
+    // NewsService
+    this.service = new NewsApiService();
+
     // The refresh
     {
       binding.swlRefresh.setOnRefreshListener(() -> {
         log.debug("Refreshing ..");
+
+        // Execute in background ..
+        AsyncTask.execute(() -> {
+
+          // How much time do we need?
+          final StopWatch stopWatch = StopWatch.createStarted();
+
+          try {
+
+            // 1. Get the List from NewsApi (in background)
+            final List<News> news = this.service.getNews(50);
+
+            // (in UI)
+            this.runOnUiThread(() -> {
+
+              // 2. Set in the adapter (
+              this.adapter.setNews(news);
+
+              // 3. Show a Toast!
+              Toasty.success(this, "Done: " + stopWatch, Toast.LENGTH_SHORT, true).show();
+            });
+
+          }catch(Exception e) {
+            log.error("Error", e);
+
+            // (in UI)
+            this.runOnUiThread(() -> {
+
+              // Build the message
+              final StringBuffer sb = new StringBuffer("Error: ");
+              sb.append(e.getMessage());
+
+              if(e.getCause() != null) {
+                sb.append(", ");
+                sb.append(e.getCause().getMessage());
+              }
+
+              // 3. Show the Toast!
+              Toasty.error(this, sb.toString(), Toast.LENGTH_LONG, true).show();
+            });
+
+          }finally {
+            // 4. Hide the spinning circle
+            binding.swlRefresh.setRefreshing(false);
+          }
+        });
       });
     }
-
   }
-
 }

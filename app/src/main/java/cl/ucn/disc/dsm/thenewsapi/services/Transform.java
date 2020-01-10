@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cl.ucn.disc.dsm.thenewsapi;
+package cl.ucn.disc.dsm.thenewsapi.services;
 
 import cl.ucn.disc.dsm.thenewsapi.model.News;
 import cl.ucn.disc.dsm.thenewsapi.services.newsapi.Article;
@@ -67,7 +67,7 @@ public class Transform {
       article.title = "No Title*";
     }
 
-    // FIXED: If there is no Source
+    // If source is null
     if(article.source == null) {
       article.source = new Source();
 
@@ -80,7 +80,7 @@ public class Transform {
       }
     }
 
-    // FIXED: If the article has no author
+    // If author is null
     if(article.author == null) {
 
       if(host != null) {
@@ -92,7 +92,7 @@ public class Transform {
       }
     }
 
-    // The date.
+    // The date
     final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt)
         .withZoneSameInstant(News.ZONE_ID);
 
