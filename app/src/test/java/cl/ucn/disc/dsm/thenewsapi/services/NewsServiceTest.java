@@ -18,6 +18,7 @@ package cl.ucn.disc.dsm.thenewsapi.services;
 
 import cl.ucn.disc.dsm.thenewsapi.model.News;
 import cl.ucn.disc.dsm.thenewsapi.services.mockup.MockupNewsService;
+import cl.ucn.disc.dsm.thenewsapi.services.newsapi.NewsApiService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,31 @@ public final class NewsServiceTest {
     Assertions.assertEquals(news.size(), 2, "Size error ...");
 
     for (final News aNews : news) {
+      log.debug("News: {}.", aNews);
+    }
+
+    log.debug("Done.");
+  }
+
+  /**
+   * Test {@link NewsService#getNews(int)} with NewsAPI.org
+   */
+  @Test
+  public void testGetNewsApi() {
+
+    final int size = 20;
+    log.debug("Testing the NewsApi ... requesting {} News.", size);
+
+    // The news service
+    final NewsService service = new NewsApiService();
+
+    // The List of News.
+    final List<News> news = service.getNews(size);
+
+    Assertions.assertNotNull(news);
+    Assertions.assertEquals(news.size(), size, "Size error ...");
+
+    for(final News aNews : news) {
       log.debug("News: {}.", aNews);
     }
 

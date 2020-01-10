@@ -160,4 +160,7 @@ dependencies {
     // Hashing functions
     // https://github.com/OpenHFT/Zero-Allocation-Hashing
     implementation "net.openhft:zero-allocation-hashing:0.10.1"
+
+    // https://github.com/GrenderG/Toasty
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 }
