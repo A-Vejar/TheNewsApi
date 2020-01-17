@@ -19,4 +19,7 @@
   <color name="toolbarTitleTextColor">@color/g0</color>
   <color name="toolbarSubtitleTextColor">@color/g50</color>
 
+  <!-- Dimmed color -->
+  <color name="dimmed">#E9000000</color>
+
 </resources>
