@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 public class MainApplication extends Application {
 
   /**
-   * The Logger.
+   * Logger
    */
   private static final Logger log = LoggerFactory.getLogger(MainApplication.class);
 

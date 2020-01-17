@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
           try {
 
             // 1. Get the List from NewsApi (in background)
-            final List<News> news = this.service.getNews(50);
+            //final List<News> news = this.service.getEverything(50);
+            final List<News> news = this.service.getTopHeadLines(50);
 
             // (in UI)
             this.runOnUiThread(() -> {

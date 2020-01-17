@@ -27,67 +27,57 @@ import org.threeten.bp.ZonedDateTime;
 public final class News {
 
   /**
-   * The Zone
+   * Zone
    */
   public static final ZoneId ZONE_ID = ZoneId.of("-3");
 
   /**
-   * The Id
+   * News ID
    */
   public final Long id;
 
   /**
-   * The Title
+   * News Title
    */
   public final String title;
 
   /**
-   * The Source
+   * News Source
    */
   public final String source;
 
   /**
-   * The Author
+   * News Author
    */
   public final String author;
 
   /**
-   * The URL
+   * News URL
    */
   public final String url;
 
   /**
-   * The URL Picture
+   * News URL-Picture
    */
   public final String urlPic;
 
   /**
-   * The Description
+   * News Description
    */
   public final String description;
 
   /**
-   * The Content
+   * News Content
    */
   public final String content;
 
   /**
-   * The Date
+   * News Date
    */
   public final ZonedDateTime date;
 
   /**
-   * The Constructor.
-   *
-   * @param id
-   * @param title
-   * @param source
-   * @param author
-   * @param url
-   * @param urlPic
-   * @param description
-   * @param content
-   * @param date
+   * Constructor
    */
   public News(Long id, String title, String source, String author, String url, String urlPic,
       String description, String content, ZonedDateTime date) {
@@ -103,63 +93,63 @@ public final class News {
   }
 
   /**
-   * @return The id
+   * @return - ID
    */
   public Long getId() {
     return this.id;
   }
 
   /**
-   * @return The title
+   * @return - Title
    */
   public String getTitle() {
     return this.title;
   }
 
   /**
-   * @return The source
+   * @return - Source
    */
   public String getSource() {
     return this.source;
   }
 
   /**
-   * @return The author
+   * @return - Author
    */
   public String getAuthor() {
     return this.author;
   }
 
   /**
-   * @return The url
+   * @return - Url
    */
   public String getUrl() {
     return this.url;
   }
 
   /**
-   * @return The urlPic
+   * @return - UrlPic
    */
   public String getUrlPic() {
     return this.urlPic;
   }
 
   /**
-   * @return The description
+   * @return - Description
    */
   public String getDescription() {
     return this.description;
   }
 
   /**
-   * @return The content
+   * @return - Content
    */
   public String getContent() {
     return this.content;
   }
 
   /**
-   * @return The date
+   * @return - Date
    */
   public ZonedDateTime getDate() {
     return this.date;

@@ -36,14 +36,18 @@ public interface NewsApi {
   /**
    * Endpoints - https://newsapi.org/docs/endpoints/top-headlines
    *
+   * @param country - Used as filter
    * @param category - Used as filter
    * @param pageSize - Number of result to get
    * @return - The call of {@link NewsApiResult}
    */
-  // TODO: Add news by different countries - Inner interface ??
   @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("top-headlines")
-  Call<NewsApiResult> getTopHeadLines(@Query("category") final String category, @Query("pageSize") final int pageSize);
+  Call<NewsApiResult> getTopHeadLines(
+      @Query(("country")) final String country,
+      @Query("category") final String category,
+      @Query("pageSize") final int pageSize
+  );
 
   /**
    * Endpoints - https://newsapi.org/docs/endpoints/everything

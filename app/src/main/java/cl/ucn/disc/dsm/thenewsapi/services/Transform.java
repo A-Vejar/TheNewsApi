@@ -33,9 +33,10 @@ import org.threeten.bp.format.DateTimeParseException;
 public class Transform {
 
   /**
-   * The Logger
+   * Logger
    */
   private static final Logger log = LoggerFactory.getLogger(Transform.class);
+
 
   /**
    * Article to News
@@ -45,7 +46,38 @@ public class Transform {
    */
   public static News transform(final Article article) {
 
-    // Nullity
+    throwingExceptions(article);
+
+    // The date
+    final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt)
+        .withZoneSameInstant(News.ZONE_ID);
+
+    // The unique id (computed from hash)
+    final Long theId = LongHashFunction.xx()
+        .hashChars(article.title + article.source.name);
+
+    // The News
+    return new News(
+        theId,
+        article.title,
+        article.source.name,
+        article.author,
+        article.url,
+        article.urlToImage,
+        article.description,
+        article.content,
+        publishedAt
+    );
+  }
+
+  /**
+   * Exceptions
+   *
+   * @param article - The articles
+   */
+  private static void throwingExceptions(Article article) {
+
+    // If article is null
     if(article == null) {
       throw new NewsApiService.NewsApiException("Article was null");
     }
@@ -53,18 +85,21 @@ public class Transform {
     // Host
     final String host = getHost(article.url);
 
-    // If article is null
+    // If title is null
     if(article.title == null) {
-
-      log.warn("Article without title: {}", toString(article));
 
       // ... and the content/description is null as well, throws an exception
       if(article.description == null) {
         throw new NewsApiService.NewsApiException("Article without title and description");
       }
 
-      // FIXME: Change the title for another info available
-      article.title = "No Title*";
+      if(host != null) {
+        article.title = host;
+
+      }else {
+        article.title = "No Title*";
+        log.warn("Article without title: {}", toString(article));
+      }
     }
 
     // If source is null
@@ -91,27 +126,29 @@ public class Transform {
         log.warn("Article without author: {}", toString(article));
       }
     }
+  }
 
-    // The date
-    final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt)
-        .withZoneSameInstant(News.ZONE_ID);
+  /**
+   * Get the host part of one url
+   *
+   * @param url - To use
+   * @return - The host part (without the 'www')
+   */
+  private static String getHost(final String url) {
 
-    // The unique id (computed from hash)
-    final Long theId = LongHashFunction.xx()
-        .hashChars(article.title + article.source.name);
+    try {
+      final URI uri = new URI(url);
+      final String hostname = uri.getHost();
 
-    // The News
-    return new News(
-        theId,
-        article.title,
-        article.source.name,
-        article.author,
-        article.url,
-        article.urlToImage,
-        article.description,
-        article.content,
-        publishedAt
-    );
+      // To provide 'faultproof' result, check if not null then return only hostname, without www
+      if (hostname != null) {
+        return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
+      }
+      return null;
+
+    }catch (final URISyntaxException | NullPointerException e) {
+      return null;
+    }
   }
 
   /**
@@ -141,30 +178,6 @@ public class Transform {
 
       // Add a DateTimeParseException into a NewsTransformerException.
       throw new NewsApiService.NewsApiException("Can't parse date: " + date, e);
-    }
-  }
-
-  /**
-   * Get the host part of one url
-   *
-   * @param url - To use
-   * @return - The host part (without the 'www')
-   */
-  private static String getHost(final String url) {
-
-    try {
-      final URI uri = new URI(url);
-      final String hostname = uri.getHost();
-
-      // to provide faultproof result, check if not null then return only hostname, without www.
-      if (hostname != null) {
-        return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
-      }
-
-      return null;
-
-    } catch (final URISyntaxException | NullPointerException e) {
-      return null;
     }
   }
 

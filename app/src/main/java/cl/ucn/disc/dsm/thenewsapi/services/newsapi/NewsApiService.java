@@ -38,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewsApiService implements NewsService {
 
   /**
-   * The Logger
+   * Logger
    */
   private static final Logger log = LoggerFactory.getLogger(NewsApiService.class);
 
@@ -48,7 +48,7 @@ public class NewsApiService implements NewsService {
   private final NewsApi newsApi;
 
   /**
-   * The Constructor.
+   * Constructor
    */
   public NewsApiService() {
 
@@ -94,11 +94,11 @@ public class NewsApiService implements NewsService {
       if(!response.isSuccessful()) {
 
         // Error
-        throw new NewsApiException(
-            "Can't get the NewsResult, code: " + response.code()
+        throw new NewsApiException("Can't get the NewsResult, code: " + response.code()
             , new HttpException(response));
       }
 
+      // Result
       final NewsApiResult result = response.body();
 
       // No body
@@ -122,6 +122,41 @@ public class NewsApiService implements NewsService {
   }
 
   /**
+   * Get the News from the Call
+   *
+   * @param pageSize - How many News
+   * @return - The {@link List} of {@link News}
+   */
+  @Override
+  public List<News> getEverything(int pageSize) {
+
+    // Call
+    final Call<NewsApiResult> call = this.newsApi.getEverything(pageSize);
+
+    // Process the Call
+    return getNewsFromCall(call);
+  }
+
+  /**
+   * Get the News from the Call
+   *
+   * @param pageSize - How many News
+   * @return - The {@link List} of {@link News}
+   */
+  @Override
+  public List<News> getTopHeadLines(final int pageSize) {
+
+    String country = Country.mx.toString();
+    String category = Category.science.toString();
+
+    // Call
+    final Call<NewsApiResult> call = this.newsApi.getTopHeadLines(country, category, pageSize);
+
+    // Process the Call
+    return getNewsFromCall(call);
+  }
+
+  /**
    * Inner class - Exception
    */
   public static final class NewsApiException extends RuntimeException {
@@ -136,18 +171,27 @@ public class NewsApiService implements NewsService {
   }
 
   /**
-   * Get the News from the Call
-   *
-   * @param pageSize how many.
-   * @return - The {@link List} of {@link News}
+   * Enum Class ...
    */
-  @Override
-  public List<News> getNews(int pageSize) {
+  public enum Category {
+    business,
+    entertainment,
+    general,
+    health,
+    science,
+    sports,
+    technology
+  }
 
-    // Call
-    final Call<NewsApiResult> call = this.newsApi.getEverything(pageSize);
-
-    // Process the Call
-    return getNewsFromCall(call);
+  public enum Country {
+    ar, // Argentina
+    co, // Colombia
+    cu, // Cuba
+    de, // Germany
+    jp, // Japan
+    mx, // Mexico
+    ru,  // Russia
+    us, // United States
+    ve // Venezuela
   }
 }

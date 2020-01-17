@@ -25,10 +25,18 @@ import java.util.List;
 public interface NewsService {
 
   /**
-   * Get the News from the backend.
+   * Get the News from the backend
    *
-   * @param pageSize how many.
-   * @return the {@link List} of {@link News}.
+   * @param pageSize - How many News
+   * @return - The {@link List} of {@link News}
    */
-  List<News> getNews(final int pageSize);
+  List<News> getEverything(final int pageSize);
+
+  /**
+   * Get the News from the backend
+   *
+   * @param pageSize - How many News
+   * @return - The {@link List} of {@link News}
+   */
+  List<News> getTopHeadLines(final int pageSize);
 }

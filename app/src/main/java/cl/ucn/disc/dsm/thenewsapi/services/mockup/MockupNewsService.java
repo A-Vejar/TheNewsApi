@@ -24,8 +24,6 @@ import org.threeten.bp.ZonedDateTime;
 
 public final class MockupNewsService implements NewsService {
 
-  // final ZonedDateTime date = ZonedDateTime.now(News.ZONE_ID);
-
   /**
    * Constructor.
    */
@@ -39,7 +37,7 @@ public final class MockupNewsService implements NewsService {
    * @return the {@link List} of {@link News}.
    */
   @Override
-  public List<News> getNews(int pageSize) {
+  public List<News> getEverything(int pageSize) {
 
     final List<News> news = new ArrayList<>();
 
@@ -68,5 +66,10 @@ public final class MockupNewsService implements NewsService {
     );
 
     return news;
+  }
+
+  @Override
+  public List<News> getTopHeadLines(int pageSize) {
+    return null;
   }
 }

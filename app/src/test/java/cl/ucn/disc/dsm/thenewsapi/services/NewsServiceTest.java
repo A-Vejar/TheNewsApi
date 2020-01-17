@@ -38,7 +38,7 @@ public final class NewsServiceTest {
   private static final Logger log = LoggerFactory.getLogger(NewsServiceTest.class);
 
   /**
-   * Test {@link NewsService#getNews(int)}
+   * Test {@link NewsService#getEverything(int)}
    */
   @Test
   public void testGetNewsMockup() {
@@ -49,7 +49,7 @@ public final class NewsServiceTest {
     final NewsService service = new MockupNewsService();
 
     // The List of News.
-    final List<News> news = service.getNews(2);
+    final List<News> news = service.getEverything(2);
 
     Assertions.assertNotNull(news);
     Assertions.assertEquals(news.size(), 2, "Size error ...");
@@ -62,7 +62,7 @@ public final class NewsServiceTest {
   }
 
   /**
-   * Test {@link NewsService#getNews(int)} with NewsAPI.org
+   * Test {@link NewsService#getEverything(int)} with NewsAPI.org
    */
   @Test
   public void testGetNewsApi() {
@@ -74,7 +74,7 @@ public final class NewsServiceTest {
     final NewsService service = new NewsApiService();
 
     // The List of News.
-    final List<News> news = service.getNews(size);
+    final List<News> news = service.getEverything(size);
 
     Assertions.assertNotNull(news);
     Assertions.assertEquals(news.size(), size, "Size error ...");
