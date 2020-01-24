@@ -13,7 +13,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
       android:id="@+id/sdv_picture"
       android:layout_width="125dp"
-      android:layout_height="80dp"
+      android:layout_height="match_parent"
       android:paddingTop="2dp"
       android:paddingStart="2dp"
       android:paddingEnd="4dp"
@@ -48,7 +48,7 @@
 
   <Space
     android:layout_width="match_parent"
-    android:layout_height="10dp" />
+    android:layout_height="5dp" />
   <TextView
     android:id="@+id/tv_description"
     android:textStyle="bold"
@@ -60,7 +60,7 @@
     tools:text="@tools:sample/lorem" />
   <Space
     android:layout_width="match_parent"
-    android:layout_height="5dp" />
+    android:layout_height="3dp" />
   <TextView
     android:id="@+id/tv_date"
     android:layout_width="match_parent"

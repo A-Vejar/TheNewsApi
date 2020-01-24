@@ -56,7 +56,7 @@ public class  MainActivity extends AppCompatActivity {
    * @param savedInstanceState to use.
    */
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     // Inflate the layout.
@@ -80,16 +80,20 @@ public class  MainActivity extends AppCompatActivity {
       binding.rvNews.setLayoutManager(new LinearLayoutManager(this));
 
       // Separator (line).
-      binding.rvNews.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+      binding.rvNews.addItemDecoration(
+          new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+      );
     }
 
     // The ViewModel.
     {
       // Build the NewsViewModel.
-      newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
+      newsViewModel = new ViewModelProvider(this)
+          .get(NewsViewModel.class);
 
       // Observe the list of news.
-      newsViewModel.getTopHeadLines().observe(this, news -> adapter.setNews(news));
+      newsViewModel.getTopHeadLines()
+          .observe(this, news -> adapter.setNews(news));
 
       // Observe the exception.
       newsViewModel.getException().observe(this, this::showException);
@@ -105,7 +109,7 @@ public class  MainActivity extends AppCompatActivity {
 
           // All ok.
           final int size = newsViewModel.refresh();
-          if(size != -1) {
+          if (size != -1) {
 
             // In the UI.
             runOnUiThread(() -> {
@@ -114,7 +118,9 @@ public class  MainActivity extends AppCompatActivity {
               binding.swlRefresh.setRefreshing(false);
 
               // Show a message.
-              Toasty.success(this, "News fetched: " + size, Toast.LENGTH_SHORT, true).show();
+              Toasty.success(
+                  this, "News fetched: " + size, Toast.LENGTH_SHORT, true
+              ).show();
             });
           }
         });
@@ -125,7 +131,7 @@ public class  MainActivity extends AppCompatActivity {
   /**
    * Show the exception.
    *
-   * @param - Exception to use.
+   * @param exception - Exception to use.
    */
   private void showException(final Exception exception) {
 
@@ -136,7 +142,7 @@ public class  MainActivity extends AppCompatActivity {
     final StringBuilder sb = new StringBuilder("Error: ");
     sb.append(exception.getMessage());
 
-    if(exception.getCause() != null) {
+    if (exception.getCause() != null) {
       sb.append(", ");
       sb.append(exception.getCause().getMessage());
     }

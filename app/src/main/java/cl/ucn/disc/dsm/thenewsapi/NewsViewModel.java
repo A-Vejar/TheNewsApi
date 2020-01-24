@@ -31,7 +31,8 @@ public final class NewsViewModel extends ViewModel {
   /**
    * Logger.
    */
-  private static final Logger log = LoggerFactory.getLogger(NewsViewModel.class);
+  private static final Logger log =
+      LoggerFactory.getLogger(NewsViewModel.class);
 
   /**
    * Size of news.
@@ -91,7 +92,7 @@ public final class NewsViewModel extends ViewModel {
       // 3. All ok.
       return aNews.size();
 
-    }catch(final Exception e) {
+    } catch (final Exception e) {
       log.error("Error", e);
 
       // 2. Set the exception.

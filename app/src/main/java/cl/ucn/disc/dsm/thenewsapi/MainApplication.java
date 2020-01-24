@@ -32,11 +32,12 @@ public class MainApplication extends Application {
   /**
    * Logger.
    */
-  private static final Logger log = LoggerFactory.getLogger(MainApplication.class);
+  private static final Logger log =
+      LoggerFactory.getLogger(MainApplication.class);
 
   /**
-   * Called when the application is starting, before any activity, service, or receiver objects (excluding content
-   * providers) have been created.
+   * Called when the application is starting, before any activity, service,
+   * or receiver objects (excluding content providers) have been created.
    */
   @Override
   public void onCreate() {
@@ -44,7 +45,7 @@ public class MainApplication extends Application {
 
     log.debug("Initializing ..");
 
-    /**
+    /*
      * Day and Night support.
      *
      * MODE_NIGHT_NO - Day mode.
@@ -52,7 +53,8 @@ public class MainApplication extends Application {
      * MODE_NIGHT_AUTO_BATTERY - Night mode if the save battery is activate.
      * MODE_NIGHT_FOLLOW_SYSTEM - Default mode by the device.
      */
-    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+    AppCompatDelegate
+        .setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
 
     // Fresco configuration for large images.
     ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
@@ -62,10 +64,10 @@ public class MainApplication extends Application {
         .build();
 
     // Facebook fresco initialization.
-    Fresco.initialize(this,config);
+    Fresco.initialize(this, config);
 
     // Enforce strict mode in debug mode.
-    if(BuildConfig.DEBUG) {
+    if (BuildConfig.DEBUG) {
 
       StrictMode.setThreadPolicy(new ThreadPolicy.Builder()
           .detectDiskReads()

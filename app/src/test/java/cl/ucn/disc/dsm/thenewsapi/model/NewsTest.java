@@ -58,7 +58,7 @@ public class NewsTest {
 
     // Testing.
     Assertions.assertEquals(id, news.getId());
-    Assertions.assertEquals(title, news.getTitulo());
+    Assertions.assertEquals(title, news.getTitle());
     Assertions.assertEquals(source, news.getSource());
     Assertions.assertEquals(author, news.getAuthor());
     Assertions.assertEquals(url, news.getUrl());

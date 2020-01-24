@@ -37,7 +37,7 @@ public final class MockupNewsService implements NewsService {
    * @return the {@link List} of {@link News}.
    */
   @Override
-  public List<News> getEverything(int pageSize) {
+  public List<News> getEverything(final int pageSize) {
 
     final List<News> news = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public final class MockupNewsService implements NewsService {
   }
 
   @Override
-  public List<News> getTopHeadLines(int pageSize) {
+  public List<News> getTopHeadLines(final int pageSize) {
     return null;
   }
 }

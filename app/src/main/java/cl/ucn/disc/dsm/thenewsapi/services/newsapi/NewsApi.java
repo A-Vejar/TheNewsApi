@@ -44,9 +44,9 @@ public interface NewsApi {
   @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("top-headlines")
   Call<NewsApiResult> getTopHeadLines(
-      @Query(("country")) final String country,
-      @Query("category") final String category,
-      @Query("pageSize") final int pageSize
+      @Query(("country")) String country,
+      @Query("category") String category,
+      @Query("pageSize") int pageSize
   );
 
   /**
@@ -57,5 +57,5 @@ public interface NewsApi {
    */
   @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("everything?sources=ars-technica,wired,hacker-news,recode")
-  Call<NewsApiResult> getEverything(@Query("pageSize") final int pageSize);
+  Call<NewsApiResult> getEverything(@Query("pageSize") int pageSize);
 }

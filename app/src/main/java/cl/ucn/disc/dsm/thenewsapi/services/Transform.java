@@ -75,10 +75,10 @@ public class Transform {
    *
    * @param article - The articles.
    */
-  private static void throwingExceptions(Article article) {
+  private static void throwingExceptions(final Article article) {
 
     // If article is null.
-    if(article == null) {
+    if (article == null) {
       throw new NewsApiService.NewsApiException("Article was null");
     }
 
@@ -86,42 +86,43 @@ public class Transform {
     final String host = getHost(article.url);
 
     // If title is null.
-    if(article.title == null) {
+    if (article.title == null) {
 
       // ... and the content/description is null as well, throws an exception.
-      if(article.description == null) {
-        throw new NewsApiService.NewsApiException("Article without title and description");
+      if (article.description == null) {
+        throw new NewsApiService
+            .NewsApiException("Article without title and description");
       }
 
-      if(host != null) {
+      if (host != null) {
         article.title = host;
 
-      }else {
+      } else {
         article.title = "No Title*";
         log.warn("Article without title: {}", toString(article));
       }
     }
 
     // If source is null.
-    if(article.source == null) {
+    if (article.source == null) {
       article.source = new Source();
 
-      if(host != null) {
+      if (host != null) {
         article.source.name = host;
 
-      }else {
+      } else {
         article.source.name = "No Source*";
         log.warn("Article without source: {}", toString(article));
       }
     }
 
     // If author is null.
-    if(article.author == null) {
+    if (article.author == null) {
 
-      if(host != null) {
+      if (host != null) {
         article.author = host;
 
-      }else {
+      } else {
         article.author = "No Author*";
         log.warn("Article without author: {}", toString(article));
       }
@@ -140,13 +141,16 @@ public class Transform {
       final URI uri = new URI(url);
       final String hostname = uri.getHost();
 
-      // To provide 'faultproof' result, check if not null then return only hostname, without www.
+      /*
+       * To provide 'faultproof' result, check if
+       * not null then return only hostname, without www.
+       */
       if (hostname != null) {
         return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
       }
       return null;
 
-    }catch (final URISyntaxException | NullPointerException e) {
+    } catch (final URISyntaxException | NullPointerException e) {
       return null;
     }
   }
@@ -157,13 +161,13 @@ public class Transform {
    * @param date - Date to parse.
    * @return - The date.
    *
-   * @throws cl.ucn.disc.dsm.thenewsapi.services.newsapi.NewsApiService.NewsApiException.
+   * @throws - cl.ucn.disc.dsm.thenewsapi.services.newsapi.NewsApiService.NewsApiException
    *  --> In case of no achieve the parse of the date.
    */
   private static ZonedDateTime parseZonedDateTime(final String date) {
 
     // Null date.
-    if(date == null) {
+    if (date == null) {
       throw new NewsApiService.NewsApiException("Can't parse null date");
     }
 
@@ -171,7 +175,7 @@ public class Transform {
       // Try to parse the date ...
       return ZonedDateTime.parse(date);
 
-    }catch(DateTimeParseException e) {
+    } catch (DateTimeParseException e) {
 
       // Debug message.
       log.error("Can't parse date: ->{}<-. Error: ", date, e);
@@ -189,6 +193,7 @@ public class Transform {
    * @return - The object in String format.
    */
   public static <T> String toString(final T t) {
-    return ReflectionToStringBuilder.toString(t, ToStringStyle.MULTI_LINE_STYLE);
+    return ReflectionToStringBuilder
+        .toString(t, ToStringStyle.MULTI_LINE_STYLE);
   }
 }

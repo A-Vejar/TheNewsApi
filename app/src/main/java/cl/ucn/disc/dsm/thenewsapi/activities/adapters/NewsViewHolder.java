@@ -46,9 +46,9 @@ public final class NewsViewHolder extends RecyclerView.ViewHolder {
    *
    * @param rowNewsBinding to use.
    */
-  public NewsViewHolder(RowNewsBinding rowNewsBinding) {
+  public NewsViewHolder(final RowNewsBinding rowNewsBinding) {
     super(rowNewsBinding.getRoot());
-    this.binding = rowNewsBinding;
+    binding = rowNewsBinding;
   }
 
   /**
@@ -59,22 +59,22 @@ public final class NewsViewHolder extends RecyclerView.ViewHolder {
   public void bind(final News news) {
 
     // If exist the url ...
-    if(news.getUrlPic() != null) {
+    if (news.getUrlPic() != null) {
       // ... Set the uri.
-      this.binding.sdvPicture.setImageURI(news.getUrlPic());
+      binding.sdvPicture.setImageURI(news.getUrlPic());
 
-    }else {
+    } else {
       // .. set a default image.
-      this.binding.sdvPicture.setImageResource(R.drawable.ic_launcher_background);
+      binding.sdvPicture.setImageResource(R.drawable.ic_launcher_background);
     }
 
-    this.binding.tvTitle.setText(news.getTitle());
-    this.binding.tvDescription.setText(news.getDescription());
-    this.binding.tvAuthor.setText(news.getAuthor());
-    this.binding.tvSource.setText(news.getSource());
+    binding.tvTitle.setText(news.getTitle());
+    binding.tvDescription.setText(news.getDescription());
+    binding.tvAuthor.setText(news.getAuthor());
+    binding.tvSource.setText(news.getSource());
 
     // ZonedDateTime to Date.
     final Date date = DateTimeUtils.toDate(news.getDate().toInstant());
-    this.binding.tvDate.setText(PRETTY_TIME.format(date));
+    binding.tvDate.setText(PRETTY_TIME.format(date));
   }
 }

@@ -34,53 +34,70 @@ public final class News {
   /**
    * News ID.
    */
-  public final Long id;
+  private final Long id;
 
   /**
    * News Title.
    */
-  public final String title;
+  private final String title;
 
   /**
    * News Source.
    */
-  public final String source;
+  private final String source;
 
   /**
    * News Author.
    */
-  public final String author;
+  private final String author;
 
   /**
    * News URL.
    */
-  public final String url;
+  private final String url;
 
   /**
    * News URL-Picture.
    */
-  public final String urlPic;
+  private final String urlPic;
 
   /**
    * News Description.
    */
-  public final String description;
+  private final String description;
 
   /**
    * News Content.
    */
-  public final String content;
+  private final String content;
 
   /**
    * News Date.
    */
-  public final ZonedDateTime date;
+  private final ZonedDateTime date;
 
   /**
    * Constructor.
+   *
+   * @param id - ID
+   * @param title - Title
+   * @param source - Source
+   * @param author - Author
+   * @param url - URL
+   * @param urlPic - Url Image
+   * @param description - Description
+   * @param content - Content
+   * @param date - Date
    */
-  public News(Long id, String title, String source, String author, String url, String urlPic,
-      String description, String content, ZonedDateTime date) {
+  public News(final Long id,
+      final String title,
+      final String source,
+      final String author,
+      final String url,
+      final String urlPic,
+      final String description,
+      final String content,
+      final ZonedDateTime date) {
     this.id = id;
     this.title = title;
     this.source = source;

@@ -30,7 +30,7 @@ public interface NewsService {
    * @param pageSize - How many News.
    * @return - The {@link List} of {@link News}.
    */
-  List<News> getEverything(final int pageSize);
+  List<News> getEverything(int pageSize);
 
   /**
    * Get the News from the backend.
@@ -38,5 +38,5 @@ public interface NewsService {
    * @param pageSize - How many News.
    * @return - The {@link List} of {@link News}.
    */
-  List<News> getTopHeadLines(final int pageSize);
+  List<News> getTopHeadLines(int pageSize);
 }

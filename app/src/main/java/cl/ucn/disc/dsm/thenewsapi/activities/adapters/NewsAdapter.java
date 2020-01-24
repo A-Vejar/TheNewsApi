@@ -30,7 +30,6 @@ import cl.ucn.disc.dsm.thenewsapi.databinding.RowNewsBinding;
 import cl.ucn.disc.dsm.thenewsapi.model.News;
 import java.util.ArrayList;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,10 +83,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
    * @param inflater - Inflates the popup.
    * @param context - Build the dialog.
    */
-  private void showImagePopup(final News news, final LayoutInflater inflater, final Context context ) {
+  private void showImagePopup(final News news, final LayoutInflater inflater,
+      final Context context) {
 
     // The popup-image.
-    final PopupImageBinding popupImageBinding = PopupImageBinding.inflate(inflater);
+    final PopupImageBinding popupImageBinding =
+        PopupImageBinding.inflate(inflater);
 
     // The URL of the photo.
     popupImageBinding.pdvPic.setPhotoUri(Uri.parse(news.getUrlPic()));
@@ -99,26 +100,25 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
   }
 
   /**
-   * Called when RecyclerView needs a newViewHolder of the given type to represent an item.
+   * Called when RecyclerView needs a newViewHolder of the given
+   * type to represent an item.
    */
-  @NotNull
   @Override
-  public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public NewsViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+      final int viewType) {
 
     // The inflater.
-    final LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+    final LayoutInflater layoutInflater =
+        LayoutInflater.from(parent.getContext());
 
     // The row of news.
-    final RowNewsBinding rowNewsBinding = RowNewsBinding.inflate(
-        layoutInflater,
-        parent,
-        false
-    );
+    final RowNewsBinding rowNewsBinding =
+        RowNewsBinding.inflate(layoutInflater, parent, false);
 
     // The NewsViewHolder.
     final NewsViewHolder newsViewHolder = new NewsViewHolder(rowNewsBinding);
 
-    /**
+    /*
      * Click Listener ...
      * Popup the image on the list.
      */
@@ -143,9 +143,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
       this.showImagePopup(news, layoutInflater, parent.getContext());
     });
 
-    /**
+    /*
      * Click Listener ...
-     * Click on a news in the row to open the news link.
+     * Click on any news in the row to open the link
      */
     rowNewsBinding.getRoot().setOnClickListener(view -> {
 
@@ -176,11 +176,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
   }
 
   /**
-   * Called by RecyclerView to display the data at the specified position. This method should update the contents of the ...
-   * ... ViewHolder to reflect the item at the given position.
+   * Called by RecyclerView to display the data at the specified position.
+   * This method should update the contents of the ViewHolder to reflect the
+   * item at the given position.
    */
   @Override
-  public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull final NewsViewHolder holder,
+      final int position) {
     holder.bind(this.news.get(position));
   }
 
@@ -196,7 +198,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
    * Return the stable ID for the item at position.
    */
   @Override
-  public long getItemId(int position) {
-    return this.news.get(position).id;
+  public long getItemId(final int position) {
+    return this.news.get(position).getId();
   }
 }

@@ -40,7 +40,8 @@ public class NewsApiService implements NewsService {
   /**
    * Logger.
    */
-  private static final Logger log = LoggerFactory.getLogger(NewsApiService.class);
+  private static final Logger log =
+      LoggerFactory.getLogger(NewsApiService.class);
 
   /**
    * NewsAPI.
@@ -53,8 +54,8 @@ public class NewsApiService implements NewsService {
   public NewsApiService() {
 
     // Logging with slf4j.
-    final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(log::debug)
-        .setLevel(Level.BODY);
+    final HttpLoggingInterceptor loggingInterceptor =
+        new HttpLoggingInterceptor(log::debug).setLevel(Level.BODY);
 
     // Web Client.
     final OkHttpClient httpClient = new Builder()
@@ -91,23 +92,23 @@ public class NewsApiService implements NewsService {
       final Response<NewsApiResult> response = call.execute();
 
       // Not successful.
-      if(!response.isSuccessful()) {
+      if (!response.isSuccessful()) {
 
         // Error.
-        throw new NewsApiException("Can't get the NewsResult, code: " + response.code()
-            , new HttpException(response));
+        throw new NewsApiException("Can't get NewsResult, code: " + response.code(),
+            new HttpException(response));
       }
 
       // Result.
       final NewsApiResult result = response.body();
 
       // No body.
-      if(result == null) {
+      if (result == null) {
         throw new NewsApiException("NewsResult was null");
       }
 
       // No articles.
-      if(result.articles == null) {
+      if (result.articles == null) {
         throw new NewsApiException("Articles in NewsResult was null");
       }
 
@@ -116,7 +117,7 @@ public class NewsApiService implements NewsService {
           .map(Transform::transform)
           .collect(Collectors.toList());
 
-    }catch(final IOException e) {
+    } catch (final IOException e) {
       throw new NewsApiException("Can't get the NewsResult", e);
     }
   }
@@ -128,7 +129,7 @@ public class NewsApiService implements NewsService {
    * @return - The {@link List} of {@link News}.
    */
   @Override
-  public List<News> getEverything(int pageSize) {
+  public List<News> getEverything(final int pageSize) {
 
     // Call.
     final Call<NewsApiResult> call = this.newsApi.getEverything(pageSize);
@@ -150,7 +151,8 @@ public class NewsApiService implements NewsService {
     String category = Category.science.toString();
 
     // Call.
-    final Call<NewsApiResult> call = this.newsApi.getTopHeadLines(country, category, pageSize);
+    final Call<NewsApiResult> call =
+        this.newsApi.getTopHeadLines(country, category, pageSize);
 
     // Process the Call.
     return getNewsFromCall(call);
@@ -161,10 +163,19 @@ public class NewsApiService implements NewsService {
    */
   public static final class NewsApiException extends RuntimeException {
 
+    /**
+     * Exception.
+     * @param message - The exception message.
+     */
     public NewsApiException(final String message) {
       super(message);
     }
 
+    /**
+     * Exception.
+     * @param message - The exception message.
+     * @param cause - The exception cause.
+     */
     public NewsApiException(final String message, final Throwable cause) {
       super(message, cause);
     }
@@ -193,8 +204,8 @@ public class NewsApiService implements NewsService {
     de, // Germany
     jp, // Japan
     mx, // Mexico
-    ru,  // Russia
+    ru, // Russia
     us, // United States
-    ve // Venezuela
+    ve  // Venezuela
   }
 }
