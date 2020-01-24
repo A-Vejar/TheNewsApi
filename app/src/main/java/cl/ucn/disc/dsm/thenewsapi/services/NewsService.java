@@ -20,23 +20,23 @@ import cl.ucn.disc.dsm.thenewsapi.model.News;
 import java.util.List;
 
 /**
- * Service class
+ * Service class.
  */
 public interface NewsService {
 
   /**
-   * Get the News from the backend
+   * Get the News from the backend.
    *
-   * @param pageSize - How many News
-   * @return - The {@link List} of {@link News}
+   * @param pageSize - How many News.
+   * @return - The {@link List} of {@link News}.
    */
   List<News> getEverything(final int pageSize);
 
   /**
-   * Get the News from the backend
+   * Get the News from the backend.
    *
-   * @param pageSize - How many News
-   * @return - The {@link List} of {@link News}
+   * @param pageSize - How many News.
+   * @return - The {@link List} of {@link News}.
    */
   List<News> getTopHeadLines(final int pageSize);
 }

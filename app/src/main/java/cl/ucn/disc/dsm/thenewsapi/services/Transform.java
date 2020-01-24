@@ -33,30 +33,30 @@ import org.threeten.bp.format.DateTimeParseException;
 public class Transform {
 
   /**
-   * Logger
+   * Logger.
    */
   private static final Logger log = LoggerFactory.getLogger(Transform.class);
 
 
   /**
-   * Article to News
+   * Article to News.
    *
-   * @param article - To transform
-   * @return - The News
+   * @param article - To transform.
+   * @return - The News.
    */
   public static News transform(final Article article) {
 
     throwingExceptions(article);
 
-    // The date
+    // The date.
     final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt)
         .withZoneSameInstant(News.ZONE_ID);
 
-    // The unique id (computed from hash)
+    // The unique id (computed from hash).
     final Long theId = LongHashFunction.xx()
         .hashChars(article.title + article.source.name);
 
-    // The News
+    // The News.
     return new News(
         theId,
         article.title,
@@ -71,24 +71,24 @@ public class Transform {
   }
 
   /**
-   * Exceptions
+   * Exceptions.
    *
-   * @param article - The articles
+   * @param article - The articles.
    */
   private static void throwingExceptions(Article article) {
 
-    // If article is null
+    // If article is null.
     if(article == null) {
       throw new NewsApiService.NewsApiException("Article was null");
     }
 
-    // Host
+    // Host.
     final String host = getHost(article.url);
 
-    // If title is null
+    // If title is null.
     if(article.title == null) {
 
-      // ... and the content/description is null as well, throws an exception
+      // ... and the content/description is null as well, throws an exception.
       if(article.description == null) {
         throw new NewsApiService.NewsApiException("Article without title and description");
       }
@@ -102,7 +102,7 @@ public class Transform {
       }
     }
 
-    // If source is null
+    // If source is null.
     if(article.source == null) {
       article.source = new Source();
 
@@ -115,7 +115,7 @@ public class Transform {
       }
     }
 
-    // If author is null
+    // If author is null.
     if(article.author == null) {
 
       if(host != null) {
@@ -129,10 +129,10 @@ public class Transform {
   }
 
   /**
-   * Get the host part of one url
+   * Get the host part of one url.
    *
-   * @param url - To use
-   * @return - The host part (without the 'www')
+   * @param url - To use.
+   * @return - The host part (without the 'www').
    */
   private static String getHost(final String url) {
 
@@ -140,7 +140,7 @@ public class Transform {
       final URI uri = new URI(url);
       final String hostname = uri.getHost();
 
-      // To provide 'faultproof' result, check if not null then return only hostname, without www
+      // To provide 'faultproof' result, check if not null then return only hostname, without www.
       if (hostname != null) {
         return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
       }
@@ -152,17 +152,17 @@ public class Transform {
   }
 
   /**
-   * Parse a date of {@link String} to {@link ZonedDateTime}
+   * Parse a date of {@link String} to {@link ZonedDateTime}.
    *
-   * @param date - Date to parse
-   * @return - The date
+   * @param date - Date to parse.
+   * @return - The date.
    *
-   * @throws cl.ucn.disc.dsm.thenewsapi.services.newsapi.NewsApiService.NewsApiException
-   *  --> In case of no achieve the parse of the date
+   * @throws cl.ucn.disc.dsm.thenewsapi.services.newsapi.NewsApiService.NewsApiException.
+   *  --> In case of no achieve the parse of the date.
    */
   private static ZonedDateTime parseZonedDateTime(final String date) {
 
-    // Null date
+    // Null date.
     if(date == null) {
       throw new NewsApiService.NewsApiException("Can't parse null date");
     }
@@ -173,7 +173,7 @@ public class Transform {
 
     }catch(DateTimeParseException e) {
 
-      // Debug message
+      // Debug message.
       log.error("Can't parse date: ->{}<-. Error: ", date, e);
 
       // Add a DateTimeParseException into a NewsTransformerException.
@@ -182,11 +182,11 @@ public class Transform {
   }
 
   /**
-   * Transform into String an object t showing its attributes
+   * Transform into String an object t showing its attributes.
    *
-   * @param t - To convert
-   * @param <T> - Type of t
-   * @return - The object in String format
+   * @param t - To convert.
+   * @param <T> - Type of t.
+   * @return - The object in String format.
    */
   public static <T> String toString(final T t) {
     return ReflectionToStringBuilder.toString(t, ToStringStyle.MULTI_LINE_STYLE);

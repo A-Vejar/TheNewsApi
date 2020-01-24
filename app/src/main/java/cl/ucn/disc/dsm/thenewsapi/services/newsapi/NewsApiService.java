@@ -38,25 +38,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewsApiService implements NewsService {
 
   /**
-   * Logger
+   * Logger.
    */
   private static final Logger log = LoggerFactory.getLogger(NewsApiService.class);
 
   /**
-   * NewsAPI
+   * NewsAPI.
    */
   private final NewsApi newsApi;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public NewsApiService() {
 
-    // Logging with slf4j
+    // Logging with slf4j.
     final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(log::debug)
         .setLevel(Level.BODY);
 
-    // Web Client
+    // Web Client.
     final OkHttpClient httpClient = new Builder()
         .connectTimeout(5, TimeUnit.SECONDS)
         .writeTimeout(5, TimeUnit.SECONDS)
@@ -65,53 +65,53 @@ public class NewsApiService implements NewsService {
         .addNetworkInterceptor(loggingInterceptor)
         .build();
 
-    // https://futurestud.io/tutorials/retrofit-getting-started-and-android-client
+    // https://futurestud.io/tutorials/retrofit-getting-started-and-android-client.
     this.newsApi = new Retrofit.Builder()
-        // Main URL
+        // Main URL.
         .baseUrl(NewsApi.BASE_URL)
-        // JSON to POJO
+        // JSON to POJO.
         .addConverterFactory(GsonConverterFactory.create())
-        // Validates the interface
+        // Validates the interface.
         .validateEagerly(true)
-        // Build the Retrofit and get the NewsApi
+        // Build the Retrofit and get the NewsApi.
         .build()
         .create(NewsApi.class);
   }
 
   /**
-   * Get the News from the Call
+   * Get the News from the Call.
    *
-   * @param call - To use
-   * @return - The {@link List} of {@link News}
+   * @param call - To use.
+   * @return - The {@link List} of {@link News}.
    */
   private static List<News> getNewsFromCall(final Call<NewsApiResult> call) {
 
     try {
-      // Get the result from the call
+      // Get the result from the call.
       final Response<NewsApiResult> response = call.execute();
 
-      // Not successful
+      // Not successful.
       if(!response.isSuccessful()) {
 
-        // Error
+        // Error.
         throw new NewsApiException("Can't get the NewsResult, code: " + response.code()
             , new HttpException(response));
       }
 
-      // Result
+      // Result.
       final NewsApiResult result = response.body();
 
-      // No body
+      // No body.
       if(result == null) {
         throw new NewsApiException("NewsResult was null");
       }
 
-      // No articles
+      // No articles.
       if(result.articles == null) {
         throw new NewsApiException("Articles in NewsResult was null");
       }
 
-      // Article to News (transformer) thought Stream
+      // Article to News (transformer) thought Stream.
       return result.articles.stream()
           .map(Transform::transform)
           .collect(Collectors.toList());
@@ -122,26 +122,26 @@ public class NewsApiService implements NewsService {
   }
 
   /**
-   * Get the News from the Call
+   * Get the News from the Call.
    *
-   * @param pageSize - How many News
-   * @return - The {@link List} of {@link News}
+   * @param pageSize - How many News.
+   * @return - The {@link List} of {@link News}.
    */
   @Override
   public List<News> getEverything(int pageSize) {
 
-    // Call
+    // Call.
     final Call<NewsApiResult> call = this.newsApi.getEverything(pageSize);
 
-    // Process the Call
+    // Process the Call.
     return getNewsFromCall(call);
   }
 
   /**
-   * Get the News from the Call
+   * Get the News from the Call.
    *
-   * @param pageSize - How many News
-   * @return - The {@link List} of {@link News}
+   * @param pageSize - How many News.
+   * @return - The {@link List} of {@link News}.
    */
   @Override
   public List<News> getTopHeadLines(final int pageSize) {
@@ -149,15 +149,15 @@ public class NewsApiService implements NewsService {
     String country = Country.mx.toString();
     String category = Category.science.toString();
 
-    // Call
+    // Call.
     final Call<NewsApiResult> call = this.newsApi.getTopHeadLines(country, category, pageSize);
 
-    // Process the Call
+    // Process the Call.
     return getNewsFromCall(call);
   }
 
   /**
-   * Inner class - Exception
+   * Inner class - Exception.
    */
   public static final class NewsApiException extends RuntimeException {
 
@@ -171,7 +171,7 @@ public class NewsApiService implements NewsService {
   }
 
   /**
-   * Enum Class ...
+   * Enum class - Category.
    */
   public enum Category {
     business,
@@ -183,6 +183,9 @@ public class NewsApiService implements NewsService {
     technology
   }
 
+  /**
+   * Enum class - Country.
+   */
   public enum Country {
     ar, // Argentina
     co, // Colombia

@@ -24,22 +24,22 @@ import retrofit2.http.Query;
 public interface NewsApi {
 
   /**
-   * URL API
+   * URL API.
    */
   String BASE_URL = "https://newsapi.org/v2/";
 
   /**
-   * API Key
+   * API Key.
    */
   String API_KEY = "ab97f667d6dd4d73a7388bcdc269170c";
 
   /**
-   * Endpoints - https://newsapi.org/docs/endpoints/top-headlines
+   * Endpoints - https://newsapi.org/docs/endpoints/top-headlines.
    *
-   * @param country - Used as filter
-   * @param category - Used as filter
-   * @param pageSize - Number of result to get
-   * @return - The call of {@link NewsApiResult}
+   * @param country - Used as filter.
+   * @param category - Used as filter.
+   * @param pageSize - Number of result to get.
+   * @return - The call of {@link NewsApiResult}.
    */
   @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("top-headlines")
@@ -50,10 +50,10 @@ public interface NewsApi {
   );
 
   /**
-   * Endpoints - https://newsapi.org/docs/endpoints/everything
+   * Endpoints - https://newsapi.org/docs/endpoints/everything.
    *
-   * @param pageSize - Number of result to get
-   * @return - The call of {@link NewsApiResult}
+   * @param pageSize - Number of result to get.
+   * @return - The call of {@link NewsApiResult}.
    */
   @Headers({"X-Api-key: " + API_KEY, "X-No-Cache: true"})
   @GET("everything?sources=ars-technica,wired,hacker-news,recode")

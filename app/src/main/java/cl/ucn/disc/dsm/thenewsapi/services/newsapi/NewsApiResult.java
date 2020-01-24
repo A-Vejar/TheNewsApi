@@ -21,7 +21,18 @@ import java.util.List;
 
 public class NewsApiResult {
 
+  /**
+   * API Response status.
+   */
   public String status;
+
+  /**
+   * News size.
+   */
   public long totalResults;
+
+  /**
+   * News list to get.
+   */
   public List<Article> articles = new ArrayList<Article>();
 }

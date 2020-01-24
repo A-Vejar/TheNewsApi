@@ -29,75 +29,75 @@ import org.slf4j.LoggerFactory;
 public final class NewsViewModel extends ViewModel {
 
   /**
-   * Logger
+   * Logger.
    */
   private static final Logger log = LoggerFactory.getLogger(NewsViewModel.class);
 
   /**
-   * Size of news
+   * Size of news.
    */
   private static final int PAGE_SIZE = 50;
 
   /**
-   * The {@link List} of {@link News} to provide
+   * The {@link List} of {@link News} to provide.
    */
   private final MutableLiveData<List<News>> news = new MutableLiveData<>();
 
   /**
-   * The Exception in case of error
+   * The Exception in case of error.
    */
   private final MutableLiveData<Exception> exception = new MutableLiveData<>();
 
   /**
-   * The provider of {@link News}
+   * The provider of {@link News}.
    */
   private NewsService service = new NewsApiService();
 
   /**
-   * LiveData of News to use in the view
+   * LiveData of News to use in the view.
    *
-   * @return - The List of News inside a LiveData
+   * @return - The List of News inside a LiveData.
    */
   public LiveData<List<News>> getTopHeadLines() {
-    return this.news;
+    return news;
   }
 
   /**
    * LiveData of Exception to use in the view.
    *
-   * @return - The Exception in case of error
+   * @return - The Exception in case of error.
    */
   public LiveData<Exception> getException() {
-    return this.exception;
+    return exception;
   }
 
   /**
-   * Update the internal list of News
+   * Update the internal list of News.
    *
-   * <p>NOTE: Need to run in background.</p>
+   * <p>NOTE: Need to run in background.</p>.
    *
-   * @return - The number of news loaded
+   * @return - The number of news loaded.
    */
   public int refresh() {
 
     try {
 
-      // 1. Get the list of news from NewsApi
+      // 1. Get the list of news from NewsApi.
       final List<News> aNews = service.getTopHeadLines(PAGE_SIZE);
 
-      // 2. Set the values (NEED to be in background)
+      // 2. Set the values (NEED to be in background).
       news.postValue(aNews);
 
-      // 3. All ok!
+      // 3. All ok.
       return aNews.size();
 
-    }catch (final Exception e) {
+    }catch(final Exception e) {
       log.error("Error", e);
 
-      // 2. Set the exception
+      // 2. Set the exception.
       exception.postValue(e);
 
-      // 3. All error!
+      // 3. All error.
       return -1;
     }
   }

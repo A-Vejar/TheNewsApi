@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 public class MainApplication extends Application {
 
   /**
-   * Logger
+   * Logger.
    */
   private static final Logger log = LoggerFactory.getLogger(MainApplication.class);
 
@@ -45,26 +45,26 @@ public class MainApplication extends Application {
     log.debug("Initializing ..");
 
     /**
-     * Day and Night support
+     * Day and Night support.
      *
-     * MODE_NIGHT_NO - Day mode
-     * MODE_NIGHT_YES - Night mode
-     * MODE_NIGHT_AUTO_BATTERY - Night mode if the save battery is activate
-     * MODE_NIGHT_FOLLOW_SYSTEM - Default mode by the device
+     * MODE_NIGHT_NO - Day mode.
+     * MODE_NIGHT_YES - Night mode.
+     * MODE_NIGHT_AUTO_BATTERY - Night mode if the save battery is activate.
+     * MODE_NIGHT_FOLLOW_SYSTEM - Default mode by the device.
      */
     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
 
-    // Fresco configuration for large images
+    // Fresco configuration for large images.
     ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
         .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
         .setResizeAndRotateEnabledForNetwork(true)
         .setDownsampleEnabled(true)
         .build();
 
-    // Facebook fresco initialization
+    // Facebook fresco initialization.
     Fresco.initialize(this,config);
 
-    // Enforce strict mode in debug mode
+    // Enforce strict mode in debug mode.
     if(BuildConfig.DEBUG) {
 
       StrictMode.setThreadPolicy(new ThreadPolicy.Builder()

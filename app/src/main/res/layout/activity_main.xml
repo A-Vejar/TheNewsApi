@@ -21,8 +21,8 @@
       app:srcCompat="@drawable/world" />
     <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
-      android:layout_width="345dp"
-      android:layout_height="?attr/actionBarSize"
+      android:layout_width="325dp"
+      android:layout_height="wrap_content"
       android:elevation="4dp"
       android:minHeight="?attr/actionBarSize"
       android:theme="@style/Toolbar"

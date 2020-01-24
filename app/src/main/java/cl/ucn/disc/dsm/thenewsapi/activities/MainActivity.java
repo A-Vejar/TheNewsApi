@@ -30,25 +30,25 @@ import es.dmoral.toasty.Toasty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
   /**
-   * Logger
+   * Logger.
    */
   private static final Logger log = LoggerFactory.getLogger(MainActivity.class);
 
   /**
-   * Bindings
+   * Bindings.
    */
   private ActivityMainBinding binding;
 
   /**
-   * NewsAdapter
+   * NewsAdapter.
    */
   private NewsAdapter adapter;
 
   /**
-   * ViewModel of News
+   * ViewModel of News.
    */
   private NewsViewModel newsViewModel;
 
@@ -59,58 +59,58 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // Inflate the layout
+    // Inflate the layout.
     binding = ActivityMainBinding.inflate(getLayoutInflater());
 
     // Assign to the main view.
     setContentView(binding.getRoot());
 
-    // Set the toolbar
+    // Set the toolbar.
     {
       this.setSupportActionBar(binding.toolbar);
     }
 
-    // Adapter + RecyclerView
+    // Adapter + RecyclerView.
     {
-      // Adapter
+      // Adapter.
       adapter = new NewsAdapter();
       binding.rvNews.setAdapter(adapter);
 
-      // Layout (ListView)
+      // Layout (ListView).
       binding.rvNews.setLayoutManager(new LinearLayoutManager(this));
 
-      // Separator (line)
+      // Separator (line).
       binding.rvNews.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
-    // The ViewModel
+    // The ViewModel.
     {
-      // Build the NewsViewModel
+      // Build the NewsViewModel.
       newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
-      // Observe the list of news
+      // Observe the list of news.
       newsViewModel.getTopHeadLines().observe(this, news -> adapter.setNews(news));
 
-      // Observe the exception
+      // Observe the exception.
       newsViewModel.getException().observe(this, this::showException);
     }
 
-    // The refresh
+    // The refresh.
     {
       binding.swlRefresh.setOnRefreshListener(() -> {
         log.debug("Refreshing ..");
 
-        // Run in background
+        // Run in background.
         AsyncTask.execute(() -> {
 
-          // All ok
+          // All ok.
           final int size = newsViewModel.refresh();
-          if (size != -1) {
+          if(size != -1) {
 
-            // In the UI
+            // In the UI.
             runOnUiThread(() -> {
 
-              // Hide the loading
+              // Hide the loading.
               binding.swlRefresh.setRefreshing(false);
 
               // Show a message.
@@ -123,16 +123,16 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * Show the exception
+   * Show the exception.
    *
-   * @param - Exception to use
+   * @param - Exception to use.
    */
   private void showException(final Exception exception) {
 
-    // Hide the loading
+    // Hide the loading.
     binding.swlRefresh.setRefreshing(false);
 
-    // Build the message
+    // Build the message.
     final StringBuilder sb = new StringBuilder("Error: ");
     sb.append(exception.getMessage());
 

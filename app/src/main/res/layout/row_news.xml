@@ -27,7 +27,8 @@
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextLarge"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextMedium"
         tools:text="@tools:sample/lorem" />
       <TextView
         android:id="@+id/tv_author"
@@ -45,17 +46,26 @@
     </LinearLayout>
   </LinearLayout>
 
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="10dp" />
   <TextView
     android:id="@+id/tv_description"
+    android:textStyle="bold"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="@style/TextMedium"
+    android:textAlignment="center"
+    android:textAllCaps="false"
+    android:textAppearance="@style/TextLarge"
     tools:text="@tools:sample/lorem" />
-
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="5dp" />
   <TextView
     android:id="@+id/tv_date"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:textAllCaps="false"
     android:textAppearance="@style/TextSmall"
     tools:text="@tools:sample/date/ddmmyy" />
 

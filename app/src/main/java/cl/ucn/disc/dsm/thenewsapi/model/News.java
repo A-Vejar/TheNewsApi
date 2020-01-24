@@ -20,64 +20,64 @@ import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
 
 /**
- * Domain class
+ * Domain class.
  *
- * @author Ariel-Vejar
+ * @author Ariel-Vejar.
  */
 public final class News {
 
   /**
-   * Zone
+   * Zone.
    */
   public static final ZoneId ZONE_ID = ZoneId.of("-3");
 
   /**
-   * News ID
+   * News ID.
    */
   public final Long id;
 
   /**
-   * News Title
+   * News Title.
    */
   public final String title;
 
   /**
-   * News Source
+   * News Source.
    */
   public final String source;
 
   /**
-   * News Author
+   * News Author.
    */
   public final String author;
 
   /**
-   * News URL
+   * News URL.
    */
   public final String url;
 
   /**
-   * News URL-Picture
+   * News URL-Picture.
    */
   public final String urlPic;
 
   /**
-   * News Description
+   * News Description.
    */
   public final String description;
 
   /**
-   * News Content
+   * News Content.
    */
   public final String content;
 
   /**
-   * News Date
+   * News Date.
    */
   public final ZonedDateTime date;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public News(Long id, String title, String source, String author, String url, String urlPic,
       String description, String content, ZonedDateTime date) {
@@ -93,63 +93,63 @@ public final class News {
   }
 
   /**
-   * @return - ID
+   * @return - ID.
    */
   public Long getId() {
     return this.id;
   }
 
   /**
-   * @return - Title
+   * @return - Title.
    */
   public String getTitle() {
     return this.title;
   }
 
   /**
-   * @return - Source
+   * @return - Source.
    */
   public String getSource() {
     return this.source;
   }
 
   /**
-   * @return - Author
+   * @return - Author.
    */
   public String getAuthor() {
     return this.author;
   }
 
   /**
-   * @return - Url
+   * @return - Url.
    */
   public String getUrl() {
     return this.url;
   }
 
   /**
-   * @return - UrlPic
+   * @return - UrlPic.
    */
   public String getUrlPic() {
     return this.urlPic;
   }
 
   /**
-   * @return - Description
+   * @return - Description.
    */
   public String getDescription() {
     return this.description;
   }
 
   /**
-   * @return - Content
+   * @return - Content.
    */
   public String getContent() {
     return this.content;
   }
 
   /**
-   * @return - Date
+   * @return - Date.
    */
   public ZonedDateTime getDate() {
     return this.date;

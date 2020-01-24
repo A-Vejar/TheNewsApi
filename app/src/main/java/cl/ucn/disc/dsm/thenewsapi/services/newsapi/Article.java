@@ -18,12 +18,43 @@ package cl.ucn.disc.dsm.thenewsapi.services.newsapi;
 
 public class Article {
 
+  /**
+   * Article Source.
+   */
   public Source source;
+
+  /**
+   * Article Author.
+   */
   public String author;
+
+  /**
+   * Article Title.
+   */
   public String title;
+
+  /**
+   * Article Description.
+   */
   public String description;
+
+  /**
+   * Article URL.
+   */
   public String url;
+
+  /**
+   * Article URL-Image.
+   */
   public String urlToImage;
+
+  /**
+   * Article Date.
+   */
   public String publishedAt;
+
+  /**
+   * Article Content.
+   */
   public String content;
 }

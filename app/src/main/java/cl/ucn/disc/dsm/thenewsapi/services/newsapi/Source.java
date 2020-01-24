@@ -18,6 +18,13 @@ package cl.ucn.disc.dsm.thenewsapi.services.newsapi;
 
 public class Source {
 
+  /**
+   * Article-Source ID.
+   */
   public String id;
+
+  /**
+   * Article-Source Name.
+   */
   public String name;
 }

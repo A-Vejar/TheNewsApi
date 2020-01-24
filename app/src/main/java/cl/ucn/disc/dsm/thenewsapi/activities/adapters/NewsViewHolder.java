@@ -25,24 +25,24 @@ import org.ocpsoft.prettytime.PrettyTime;
 import org.threeten.bp.DateTimeUtils;
 
 /**
- * ViewHolder Pattern
+ * ViewHolder Pattern.
  *
- * @author Ariel-Vejar
+ * @author Ariel-Vejar.
  */
 public final class NewsViewHolder extends RecyclerView.ViewHolder {
 
   /**
-   * The Date formatter
+   * The Date formatter.
    */
   private static final PrettyTime PRETTY_TIME = new PrettyTime();
 
   /**
-   * Bindings
+   * Bindings.
    */
   private final RowNewsBinding binding;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param rowNewsBinding to use.
    */
@@ -54,17 +54,17 @@ public final class NewsViewHolder extends RecyclerView.ViewHolder {
   /**
    * Bind the News to the ViewHolder.
    *
-   * @param news - To bind
+   * @param news - To bind.
    */
   public void bind(final News news) {
 
     // If exist the url ...
     if(news.getUrlPic() != null) {
-      // ... Set the uri
+      // ... Set the uri.
       this.binding.sdvPicture.setImageURI(news.getUrlPic());
 
     }else {
-      // .. set a default image
+      // .. set a default image.
       this.binding.sdvPicture.setImageResource(R.drawable.ic_launcher_background);
     }
 
@@ -73,7 +73,7 @@ public final class NewsViewHolder extends RecyclerView.ViewHolder {
     this.binding.tvAuthor.setText(news.getAuthor());
     this.binding.tvSource.setText(news.getSource());
 
-    // ZonedDateTime to Date
+    // ZonedDateTime to Date.
     final Date date = DateTimeUtils.toDate(news.getDate().toInstant());
     this.binding.tvDate.setText(PRETTY_TIME.format(date));
   }

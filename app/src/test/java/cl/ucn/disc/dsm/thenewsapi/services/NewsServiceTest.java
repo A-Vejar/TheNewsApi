@@ -26,9 +26,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The test of NewsService
+ * The test of NewsService.
  *
- * @author Ariel-Vejar
+ * @author Ariel-Vejar.
  */
 public final class NewsServiceTest {
 
@@ -38,14 +38,14 @@ public final class NewsServiceTest {
   private static final Logger log = LoggerFactory.getLogger(NewsServiceTest.class);
 
   /**
-   * Test {@link NewsService#getEverything(int)}
+   * Test {@link NewsService#getEverything(int)}.
    */
   @Test
   public void testGetNewsMockup() {
 
     log.debug("Testing the NewsService ...");
 
-    // The news service
+    // The news service.
     final NewsService service = new MockupNewsService();
 
     // The List of News.
@@ -62,7 +62,7 @@ public final class NewsServiceTest {
   }
 
   /**
-   * Test {@link NewsService#getEverything(int)} with NewsAPI.org
+   * Test {@link NewsService#getEverything(int)} with NewsAPI.org.
    */
   @Test
   public void testGetNewsApi() {
@@ -70,7 +70,7 @@ public final class NewsServiceTest {
     final int size = 20;
     log.debug("Testing the NewsApi ... requesting {} News.", size);
 
-    // The news service
+    // The news service.
     final NewsService service = new NewsApiService();
 
     // The List of News.

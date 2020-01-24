@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
 import org.threeten.bp.ZonedDateTime;
 
 /**
- * Test of {@link cl.ucn.disc.dsm.thenewsapi.model.News}
+ * Test of {@link cl.ucn.disc.dsm.thenewsapi.model.News}.
  *
- * @author Ariel-Vejar
+ * @author Ariel-Vejar.
  */
 public class NewsTest {
 
@@ -42,7 +42,7 @@ public class NewsTest {
 
     log.debug("Testing the Constructor ..");
 
-    // The values
+    // The values.
     final Long id = 1L;
     final String title = "The Title";
     final String source = "The Source";
@@ -53,10 +53,10 @@ public class NewsTest {
     final String content = "The Content";
     final ZonedDateTime date = ZonedDateTime.now(News.ZONE_ID);
 
-    // The Constructor
+    // The Constructor.
     final News news = new News(id, title, source, author, url, urlPic, description, content, date);
 
-    // Testing
+    // Testing.
     Assertions.assertEquals(id, news.getId());
     Assertions.assertEquals(title, news.getTitulo());
     Assertions.assertEquals(source, news.getSource());
