@@ -4,4 +4,7 @@
   <string name="title">World News</string>
   <string name="subtitle">News from NewsAPI.org</string>
 
+  <!-- ACRA Message -->
+  <string name="acra_crash_msg">NewsAPI Crash ...</string>
+
 </resources>

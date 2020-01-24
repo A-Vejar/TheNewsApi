@@ -80,9 +80,7 @@ public final class NewsViewModel extends ViewModel {
    * @return - The number of news loaded.
    */
   public int refresh() {
-
     try {
-
       // 1. Get the list of news from NewsApi.
       final List<News> aNews = service.getTopHeadLines(PAGE_SIZE);
 

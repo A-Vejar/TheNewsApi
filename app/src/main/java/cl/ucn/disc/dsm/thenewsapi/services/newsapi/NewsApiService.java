@@ -147,7 +147,7 @@ public class NewsApiService implements NewsService {
   @Override
   public List<News> getTopHeadLines(final int pageSize) {
 
-    String country = Country.mx.toString();
+    String country = Country.us.toString();
     String category = Category.science.toString();
 
     // Call.

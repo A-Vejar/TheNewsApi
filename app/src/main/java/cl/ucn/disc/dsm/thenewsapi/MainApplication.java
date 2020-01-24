@@ -17,6 +17,7 @@
 package cl.ucn.disc.dsm.thenewsapi;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
@@ -24,9 +25,19 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
+import org.acra.ACRA;
+import org.acra.annotation.AcraCore;
+import org.acra.annotation.AcraMailSender;
+import org.acra.annotation.AcraToast;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main Application
+ */
+@AcraCore(buildConfigClass = BuildConfig.class)
+@AcraToast(resText = R.string.acra_crash_msg)
+@AcraMailSender(mailTo = "ariel.vejar@live.cl")
 public class MainApplication extends Application {
 
   /**
@@ -88,5 +99,17 @@ public class MainApplication extends Application {
     }
 
     log.debug("Initializing: Done.");
+  }
+
+  /**
+   * @param base - Context.
+   */
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+
+    log.debug("Initializing ACRA ..");
+    ACRA.init(this);
+    log.debug(".. ACRA initialized !!");
   }
 }
