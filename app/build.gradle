@@ -127,7 +127,7 @@ dependencies {
     implementation "ch.acra:acra-toast:$acra_version"
 
     // Leak Canary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0'
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0'
 
     // Constraintlayout
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"

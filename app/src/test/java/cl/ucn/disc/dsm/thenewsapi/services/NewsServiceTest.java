@@ -74,7 +74,7 @@ public final class NewsServiceTest {
     final NewsService service = new NewsApiService();
 
     // The List of News.
-    final List<News> news = service.getEverything(size);
+    final List<News> news = service.getTopHeadLines(size);
 
     Assertions.assertNotNull(news);
     Assertions.assertEquals(news.size(), size, "Size error ...");
@@ -82,6 +82,12 @@ public final class NewsServiceTest {
     for(final News aNews : news) {
       log.debug("News: {}.", aNews);
     }
+
+    /*
+    for(int i = 0; i < news.size(); i++) {
+      log.debug("News: {}.", news.get(i).getUrl());
+    }
+     */
 
     log.debug("Done.");
   }

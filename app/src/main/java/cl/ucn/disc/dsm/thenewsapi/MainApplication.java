@@ -22,6 +22,7 @@ import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
 import androidx.appcompat.app.AppCompatDelegate;
+import com.facebook.drawee.backends.pipeline.BuildConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
@@ -65,7 +66,7 @@ public class MainApplication extends Application {
      * MODE_NIGHT_FOLLOW_SYSTEM - Default mode by the device.
      */
     AppCompatDelegate
-        .setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+        .setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
     // Fresco configuration for large images.
     ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)

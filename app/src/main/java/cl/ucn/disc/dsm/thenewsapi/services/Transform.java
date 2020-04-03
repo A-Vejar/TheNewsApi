@@ -37,7 +37,6 @@ public class Transform {
    */
   private static final Logger log = LoggerFactory.getLogger(Transform.class);
 
-
   /**
    * Article to News.
    *
@@ -51,10 +50,15 @@ public class Transform {
     // The date.
     final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt)
         .withZoneSameInstant(News.ZONE_ID);
+    log.debug("PUBLISHED AT = {}", publishedAt);
+
+    final ZonedDateTime published = ZonedDateTime.parse(article.publishedAt);
+    log.debug("PUBLISH AT = {}", published);
 
     // The unique id (computed from hash).
     final Long theId = LongHashFunction.xx()
         .hashChars(article.title + article.source.name);
+    log.debug("ID = {}", theId);
 
     // The News.
     return new News(
@@ -84,6 +88,7 @@ public class Transform {
 
     // Host.
     final String host = getHost(article.url);
+    log.debug("HOST = {}", host);
 
     // If title is null.
     if (article.title == null) {
@@ -140,6 +145,7 @@ public class Transform {
     try {
       final URI uri = new URI(url);
       final String hostname = uri.getHost();
+      log.debug("HOSTNAME = {}", hostname);
 
       /*
        * To provide 'faultproof' result, check if

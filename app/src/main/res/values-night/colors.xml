@@ -17,14 +17,17 @@
 
 <resources>
 
+  <!--
+  <!- Beginning ->
   <color name="colorAccent">@color/orange600</color>
+  <color name="lineDivider">@color/g800</color>
 
-  <!-- Text -->
+  <!- Text ->
   <color name="textColorPrimary">@color/orange100</color>
   <color name="textColorSecondary">@color/orange200</color>
   <color name="textColorTertiary">@color/orange300</color>
 
-  <!-- Toolbar -->
+  <!- Toolbar ->
   <color name="statusBarColor">@color/orange1000</color>
   <color name="toolbarBackground">@color/orange900</color>
   <color name="windowBackground">@color/orange1300</color>
@@ -33,5 +36,31 @@
 
   <color name="toolbarTitleTextColor">@color/orange100</color>
   <color name="toolbarSubtitleTextColor">@color/orange50</color>
+
+  <!- Dimmed Color ->
+  <color name="dimmed">#E9000000</color>
+  -->
+
+  <!-- Beginning -->
+  <color name="colorAccent">@color/orange600</color>
+  <color name="lineDivider">@color/primary_variant</color>
+
+  <!-- Text -->
+  <color name="textColorPrimary">@color/on_surface</color>
+  <color name="textColorSecondary">@color/error</color>
+  <color name="textColorTertiary">@color/on_surface</color>
+
+  <!-- Toolbar -->
+  <color name="statusBarColor">@color/on_primary</color>
+  <color name="toolbarBackground">@color/background</color>
+  <color name="windowBackground">@color/surface</color>
+  <color name="dividerColor">@color/primary_variant</color>
+  <color name="navigationBarColor">@color/on_secondary</color>
+
+  <color name="toolbarTitleTextColor">@color/on_background</color>
+  <color name="toolbarSubtitleTextColor">@color/on_background</color>
+
+  <!-- Dimmed color -->
+  <color name="dimmed">#E9000000</color>
 
 </resources>

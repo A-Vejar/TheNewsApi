@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2019-2020 Ariel Vejar Martinez <ariel.vejar@live.cl>.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+  <!-- Primary -->
+  <color name="primary">#BB86FC</color>
+
+  <!-- Primary Variant -->
+  <color name="primary_variant">#3700B3</color>
+
+  <!-- Secondary -->
+  <color name="secondary">#03DAC6</color>
+
+  <!-- Background / Surface -->
+  <color name="background">#121212</color>
+  <color name="surface">#121212</color>
+
+  <!-- Error -->
+  <color name="error">#CF6679</color>
+
+  <!-- On Primary / On Secondary-->
+  <color name="on_primary">#000000</color>
+  <color name="on_secondary">#000000</color>
+
+  <!-- On Background / On Surface-->
+  <color name="on_background">#FFFFFF</color>
+  <color name="on_surface">#FFFFFF</color>
+
+  <!-- On Error -->
+  <color name="on_error">#000000</color>
+</resources>

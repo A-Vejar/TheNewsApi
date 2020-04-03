@@ -12,12 +12,13 @@
     android:orientation="horizontal">
     <com.facebook.drawee.view.SimpleDraweeView
       android:id="@+id/sdv_picture"
-      android:layout_width="125dp"
+      android:layout_width="130dp"
       android:layout_height="match_parent"
       android:paddingTop="2dp"
       android:paddingStart="2dp"
       android:paddingEnd="4dp"
       fresco:roundedCornerRadius="5dp" />
+
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -30,12 +31,14 @@
         android:textAllCaps="true"
         android:textAppearance="@style/TextMedium"
         tools:text="@tools:sample/lorem" />
+
       <TextView
         android:id="@+id/tv_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextSmall"
         tools:text="@tools:sample/full_names" />
+
       <TextView
         android:id="@+id/tv_source"
         android:textStyle="bold"
@@ -45,10 +48,10 @@
         tools:text="@tools:sample/cities" />
     </LinearLayout>
   </LinearLayout>
-
   <Space
     android:layout_width="match_parent"
     android:layout_height="5dp" />
+
   <TextView
     android:id="@+id/tv_description"
     android:textStyle="bold"
@@ -61,6 +64,7 @@
   <Space
     android:layout_width="match_parent"
     android:layout_height="3dp" />
+
   <TextView
     android:id="@+id/tv_date"
     android:layout_width="match_parent"
@@ -68,5 +72,4 @@
     android:textAllCaps="false"
     android:textAppearance="@style/TextSmall"
     tools:text="@tools:sample/date/ddmmyy" />
-
 </LinearLayout>
